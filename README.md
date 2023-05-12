@@ -68,12 +68,6 @@ To configure this card, only the type is required, making it very easy to get st
 
 | Name                | Type      |   Default    | Description                                                                                                                                                                  |
 |---------------------| --------- |:------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-
-  today_button?: boolean;
-  prev_next_buttons?: boolean;
-  compare_button?: string;
-  period_buttons?: string[];
-
 | type                | `string`  | **required** | `custom:energy-period-selector-plus`. |
 | card_background     | `boolean`  | false | If set to `true`, a card will be added to the background of the card. |
 | today_button        | `boolean`  | true | If set to `true`, a button will be added to select today. |
@@ -84,14 +78,14 @@ To configure this card, only the type is required, making it very easy to get st
 
 ### Example Configurations
 
-<img width="1322" alt="Basic Configuration" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/ea19df86-fb17-45e6-b97c-06d154e7d021">
+<img width="1322" alt="Basic Configuration" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/7834de56-6096-45d0-9373-781c6f56f77b">
 
 ```yaml
 type: custom:energy-period-selector-plus
 card_background: true
 ```
 <hr/>
-<img width="1322" alt="No previous or next controls" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/d5c24319-d380-48bd-9e3d-3c2ad7e2aeda">
+<img width="1322" alt="No previous or next controls" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/38238f3f-f0d7-46f6-a33b-984e16707210">
 
 ```yaml
 type: custom:energy-period-selector-plus
@@ -100,7 +94,7 @@ title: No Previous or Next Controls
 prev_next_buttons: false
 ```
 <hr/>
-<img width="1231" alt="No today button" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/b8b58550-8577-4cec-bb0a-0886076f1607">
+<img width="1231" alt="No today button" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/1a26100d-5ccf-4713-9646-f52b392039cd">
 
 ```yaml
 type: custom:energy-period-selector-plus
@@ -109,7 +103,7 @@ title: No Today Button
 today_button: false
 ```
 <hr/>
-<img width="1219" alt="Text compare button" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/d5d798be-6cfc-44ad-b7b0-18c9b0c2e5e8">
+<img width="1219" alt="Text compare button" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/8dc6d530-9771-47c8-b291-fd41229e4916">
 
 ```yaml
 type: custom:energy-period-selector-plus
@@ -118,7 +112,7 @@ title: Text Compare Button
 compare_button: text
 ```
 <hr/>
-<img width="1301" alt="Icon compare button" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/f0c130db-bbf8-4a94-af23-60a76c6e091a">
+<img width="1301" alt="Icon compare button" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/780e7460-4380-4288-8376-033629725501">
 
 ```yaml
 type: custom:energy-period-selector-plus
@@ -127,7 +121,7 @@ title: Icon Compare Button
 compare_button: icon
 ```
 <hr/>
-<img width="1071" alt="No week button" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/05ea17d2-c8e5-49e2-9e13-316b1ad05796">
+<img width="1071" alt="No week button" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/49cafcfa-daa0-4ae1-973a-71a88402bbd8">
 
 ```yaml
 type: custom:energy-period-selector-plus
