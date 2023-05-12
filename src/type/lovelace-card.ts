@@ -6,6 +6,7 @@ export interface LovelaceCardConfig {
   view_index?: number;
   view_layout?: any;
   type: string;
+  title?: string;
   [key: string]: any;
 }
 

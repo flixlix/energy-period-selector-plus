@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { mdiCompare, mdiCompareRemove } from '@mdi/js';
 import {
   addDays,
@@ -16,6 +17,7 @@ import {
   startOfToday,
   startOfWeek,
   startOfYear,
+  format,
 } from 'date-fns/esm';
 import { UnsubscribeFunc } from 'home-assistant-js-websocket';
 import { css, CSSResultGroup, html, LitElement, nothing } from 'lit';
@@ -28,6 +30,9 @@ import { EnergyData, getEnergyDataCollection } from './energy';
 import { SubscribeMixin } from './energy/subscribe-mixin';
 import { HomeAssistant } from './type/home-assistant';
 import { EnergyPeriodSelectorPlusConfig } from './energy-period-selector-plus-config';
+import type { DateRangePickerRanges } from './datetime';
+import { localize } from './localize/localize';
+import { stylesBase } from './style';
 
 @customElement('energy-period-selector-base')
 export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
@@ -37,7 +42,8 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
   @property({ type: Boolean, reflect: true }) public narrow?;
   @state() _startDate?: Date;
   @state() _endDate?: Date;
-  @state() private _period?: 'day' | 'week' | 'month' | 'year';
+  @property() public ranges?: DateRangePickerRanges;
+  @state() private _period?: 'day' | 'week' | 'month' | 'year' | 'custom';
   @state() private _compare = false;
 
   public connectedCallback() {
@@ -45,6 +51,10 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
     if (this.narrow !== false) {
       toggleAttribute(this, 'narrow', this.offsetWidth < 600);
     }
+  }
+
+  async firstUpdated() {
+    (await (window as any).loadCardHelpers()).importMoreInfoControl('input_datetime'); // This is needed to render the datepicker!!!
   }
 
   public hassSubscribe(): UnsubscribeFunc[] {
@@ -81,11 +91,30 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
         ]
       : this._config.period_buttons.map(period => {
           return {
-            label: this.hass.localize(`ui.panel.lovelace.components.energy_period_selector.${period}`),
+            label: this.hass.localize(`ui.panel.lovelace.components.energy_period_selector.${period}`) || localize(`toggleButtons.${period}`),
             value: period,
           };
         });
 
+    const dateRangePicker = html`
+      <div class="date-range-container">
+        <ha-date-input
+          .locale=${this.hass.locale}
+          .value=${this._startDate?.toISOString() || ''}
+          .label=${this.hass?.localize('ui.components.date-range-picker.start_date') || 'Start date'}
+          .required=${true}
+          .max=${new Date()}
+        >
+        </ha-date-input>
+        <ha-date-input
+          .locale=${this.hass.locale}
+          .value=${this._endDate?.toISOString() || ''}
+          .label=${this.hass?.localize('ui.components.date-range-picker.end_date') || 'End date'}
+          .required=${true}
+        >
+        </ha-date-input>
+      </div>
+    `;
     return html`
       <div class="row">
         <div class="label">
@@ -114,6 +143,7 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
               </mwc-button>`
             : nothing}
         </div>
+        ${this._period === 'year' ? nothing : dateRangePicker}
         <div class="period">
           <ha-button-toggle-group
             .buttons=${viewButtons}
@@ -205,10 +235,10 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
     this._setDate(newStart);
   }
 
-  private _setDate(startDate: Date) {
+  private _setDate(startDate: Date, customEndDate?: Date) {
     const weekStartsOn = firstWeekdayIndex(this.hass.locale);
 
-    const endDate =
+    const endDate: Date =
       this._period === 'day'
         ? endOfDay(startDate)
         : this._period === 'week'
@@ -218,7 +248,7 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
         : endOfYear(startDate);
 
     const energyCollection = getEnergyDataCollection(this.hass);
-    energyCollection.setPeriod(startDate, endDate);
+    energyCollection.setPeriod(startDate, customEndDate || endDate);
     energyCollection.refresh();
   }
 
@@ -246,79 +276,7 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
     energyCollection.refresh();
   }
 
-  static get styles(): CSSResultGroup {
-    return css`
-      .row {
-        display: flex;
-        justify-content: flex-end;
-      }
-      :host([narrow]) .row {
-        flex-direction: column-reverse;
-      }
-      .label {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        font-size: 20px;
-      }
-      .period {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        align-items: center;
-      }
-      :host([narrow]) .period {
-        margin-bottom: 8px;
-      }
-      mwc-button {
-        margin-left: 8px;
-      }
-      ha-icon-button {
-        margin-left: 4px;
-        --mdc-icon-size: 20px;
-      }
-      ha-icon-button.active::before,
-      mwc-button.active::before {
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        background-color: currentColor;
-        opacity: 0;
-        pointer-events: none;
-        content: '';
-        transition: opacity 15ms linear, background-color 15ms linear;
-        opacity: var(--mdc-icon-button-ripple-opacity, 0.12);
-      }
-      ha-icon-button.active::before {
-        border-radius: 50%;
-      }
-      .compare {
-        position: relative;
-      }
-      :host {
-        --mdc-button-outline-color: currentColor;
-        --primary-color: currentColor;
-        --mdc-theme-primary: currentColor;
-        --mdc-theme-on-primary: currentColor;
-        --mdc-button-disabled-outline-color: var(--disabled-text-color);
-        --mdc-button-disabled-ink-color: var(--disabled-text-color);
-        --mdc-icon-button-ripple-opacity: 0.2;
-      }
-      ha-icon-button {
-        --mdc-icon-button-size: 28px;
-      }
-      ha-button-toggle-group {
-        padding-left: 8px;
-        padding-inline-start: 8px;
-        direction: var(--direction);
-      }
-      mwc-button {
-        flex-shrink: 0;
-      }
-    `;
-  }
+  static styles = stylesBase;
 }
 
 declare global {

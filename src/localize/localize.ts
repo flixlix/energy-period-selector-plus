@@ -21,5 +21,5 @@ export function localize(string: string, search = '', replace = ''): string {
   if (search !== '' && replace !== '') {
     translated = translated.replace(search, replace);
   }
-  return translated;
+  return translated || string;
 }
