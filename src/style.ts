@@ -12,17 +12,24 @@ export const styles = css`
 
 export const stylesBase = css`
   .date-range-container {
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
+    width: 342px;
     gap: 1rem;
+  }
+  .mdc-text-field__icon .mdc-text-field__icon--trailing {
+    padding-left: 0;
   }
   .row {
     display: flex;
     justify-content: flex-end;
+    align-items: flex-end;
     flex-direction: column-reverse;
     gap: 1rem;
+    min-width: 342px;
   }
   .label {
     display: flex;
@@ -78,27 +85,9 @@ export const stylesBase = css`
     --mdc-icon-button-size: 28px;
   }
   ha-button-toggle-group {
-    padding-left: 8px;
-    padding-inline-start: 8px;
     direction: var(--direction);
   }
   mwc-button {
     flex-shrink: 0;
-  }
-
-  ha-date-range-picker {
-    margin-right: 16px;
-    margin-inline-end: 16px;
-    margin-inline-start: initial;
-    max-width: 100%;
-    direction: var(--direction);
-  }
-
-  @media all and (max-width: 1025px) {
-    ha-date-range-picker {
-      margin-right: 0;
-      margin-inline-end: 0;
-      width: 100%;
-    }
   }
 `;
