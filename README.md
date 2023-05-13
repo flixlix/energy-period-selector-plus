@@ -12,8 +12,13 @@
 
 The main goal of this card is to expand the functionality and customizability of the official [Energy Date Picker Card](https://www.home-assistant.io/dashboards/energy/#energy-date-picker) from Home Assistant.
 
-The goal is to deliver a card that fits in the overall design of the Energy Dashboard, while providing more features, such as hiding or changing the style of the compare button.
+The goal is to deliver a card that fits in the overall design of the Energy Dashboard, while providing more features.
 
+## Features
+
+- Change style or hide Compare Button.
+- Use Background to fit other cards.
+- Choose which Periods are shown.
 
 ## Install
 
