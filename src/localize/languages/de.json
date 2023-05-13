@@ -1,0 +1,58 @@
+{
+  "common": {
+    "version": "Version",
+    "invalid_configuration": "Ungültige Konfiguration",
+    "show_warning": "Warnung anzeigen",
+    "entity_not_found": "Status der Entität nicht gefunden",
+    "missing_child": "Fehlende untergeordnete Entität",
+    "loading": "Laden..."
+  },
+  "toggleButtons": {
+    "custom": "Benutzerdefiniert"
+  },
+  "editor": {
+    "yaml_disclaimer": "Bitte verwenden Sie den YAML-Modus für die anderen Optionen",
+    "docs": "Dokumentation",
+    "sections": "Abschnitte",
+    "section": "Abschnitt",
+    "add_section": "+ Abschnitt hinzufügen",
+    "add_entity": "+ Entität hinzufügen",
+    "entity_editor": "Entitätseditor",
+    "decimals": "Dezimalstellen",
+    "fields": {
+      "autoconfig": "Auto-Konfiguration",
+      "print_yaml": "Automatisch generierte Konfigurations-YAML anzeigen",
+      "show_names": "Namen anzeigen",
+      "show_icons": "Symbole anzeigen",
+      "show_states": "Status anzeigen",
+      "show_units": "Einheiten anzeigen",
+      "energy_date_selection": "Mit Energie-Datumsauswahl synchronisieren",
+      "height": "Höhe",
+      "wide": "Breit",
+      "min_box_height": "Minimale Boxhöhe",
+      "min_box_distance": "Minimale Boxentfernung",
+      "min_state": "Minimaler Zustand",
+      "round": "Runden",
+      "throttle": "Drosseln",
+      "unit_prefix": "Einheitenpräfix",
+      "entity": "Entität",
+      "type": "Typ",
+      "children": "Untergeordnete",
+      "name": "Name",
+      "icon": "Symbol",
+      "color": "Farbe",
+      "unit_of_measurement": "Maßeinheit",
+      "tap_action": "Tap-Aktion",
+      "color_on_state": "Farbe basierend auf Zustand ändern",
+      "color_limit": "Grenzwert für Zustandsänderung",
+      "color_above": "Farbe über Grenzwert",
+      "color_below": "Farbe unter Grenzwert"
+    },
+    "entity_types": {
+      "entity": "Entität",
+      "remaining_parent_state": "Verbleibender Status der übergeordneten Entität",
+      "remaining_child_state": "Verbleibender Status der untergeordneten Entität",
+      "passthrough": "Durchschleifen"
+    }
+  }
+}
