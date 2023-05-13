@@ -101,49 +101,57 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
         <ha-date-input
           .locale=${this.hass.locale}
           .value=${this._startDate?.toISOString() || ''}
-          .label=${this.hass?.localize('ui.components.date-range-picker.start_date') || 'Start date'}
+          .label=${this.hass.localize('ui.components.date-range-picker.start_date')}
+          @value-changed=${this._startDateChanged}
           .required=${true}
-          .max=${new Date()}
+          .min=${'2019-01-01'}
+          .max=${this._endDate?.toISOString() || endOfToday().toISOString()}
         >
         </ha-date-input>
         <ha-date-input
           .locale=${this.hass.locale}
           .value=${this._endDate?.toISOString() || ''}
-          .label=${this.hass?.localize('ui.components.date-range-picker.end_date') || 'End date'}
+          .label=${this.hass.localize('ui.components.date-range-picker.end_date')}
+          @value-changed=${this._endDateChanged}
           .required=${true}
+          .min=${this._startDate.toISOString()}
+          .max=${endOfToday().toISOString()}
         >
         </ha-date-input>
       </div>
     `;
     return html`
       <div class="row">
-        <div class="label">
-          ${this._period === 'day'
-            ? formatDate(this._startDate, this.hass.locale)
-            : this._period === 'month'
-            ? formatDateMonthYear(this._startDate, this.hass.locale)
-            : this._period === 'year'
-            ? formatDateYear(this._startDate, this.hass.locale)
-            : `${formatDateShort(this._startDate, this.hass.locale)} – ${formatDateShort(this._endDate || new Date(), this.hass.locale)}`}
-          ${this._config?.prev_next_buttons !== false
-            ? html`
-                <ha-icon-button-prev
-                  .label=${this.hass.localize('ui.panel.lovelace.components.energy_period_selector.previous')}
-                  @click=${this._pickPrevious}
-                ></ha-icon-button-prev>
-                <ha-icon-button-next
-                  .label=${this.hass.localize('ui.panel.lovelace.components.energy_period_selector.next')}
-                  @click=${this._pickNext}
-                ></ha-icon-button-next>
-              `
-            : nothing}
-          ${this._config?.today_button !== false
-            ? html`<mwc-button dense outlined @click=${this._pickToday}>
-                ${this.hass.localize('ui.panel.lovelace.components.energy_period_selector.today')}
-              </mwc-button>`
-            : nothing}
-        </div>
-        ${this._period === 'year' ? nothing : dateRangePicker}
+        ${this._period === 'custom'
+          ? dateRangePicker
+          : html`
+              <div class="label">
+                ${this._period === 'day'
+                  ? formatDate(this._startDate, this.hass.locale)
+                  : this._period === 'month'
+                  ? formatDateMonthYear(this._startDate, this.hass.locale)
+                  : this._period === 'year'
+                  ? formatDateYear(this._startDate, this.hass.locale)
+                  : `${formatDateShort(this._startDate, this.hass.locale)} – ${formatDateShort(this._endDate || new Date(), this.hass.locale)}`}
+                ${this._config?.prev_next_buttons !== false
+                  ? html`
+                      <ha-icon-button-prev
+                        .label=${this.hass.localize('ui.panel.lovelace.components.energy_period_selector.previous')}
+                        @click=${this._pickPrevious}
+                      ></ha-icon-button-prev>
+                      <ha-icon-button-next
+                        .label=${this.hass.localize('ui.panel.lovelace.components.energy_period_selector.next')}
+                        @click=${this._pickNext}
+                      ></ha-icon-button-next>
+                    `
+                  : nothing}
+                ${this._config?.today_button !== false
+                  ? html`<mwc-button dense outlined @click=${this._pickToday}>
+                      ${this.hass.localize('ui.panel.lovelace.components.energy_period_selector.today')}
+                    </mwc-button>`
+                  : nothing}
+              </div>
+            `}
         <div class="period">
           <ha-button-toggle-group
             .buttons=${viewButtons}
@@ -172,6 +180,16 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
     `;
   }
 
+  public _startDateChanged(ev: CustomEvent): void {
+    this._setDate(new Date(ev.detail.value));
+  }
+
+  public _endDateChanged(ev: CustomEvent): void {
+    if (this._startDate && new Date(ev.detail.value) > this._startDate) {
+      this._setDate(this._startDate, new Date(ev.detail.value));
+    }
+  }
+
   private _handleView(ev: CustomEvent): void {
     this._period = ev.detail.value;
     const today = startOfToday();
@@ -193,7 +211,10 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
         ? startOfWeek(start, { weekStartsOn })
         : this._period === 'month'
         ? startOfMonth(start)
-        : startOfYear(start),
+        : this._period === 'year'
+        ? startOfYear(start)
+        : this._startDate || startOfToday(),
+      this._period === 'custom' ? this._endDate : undefined,
     );
   }
 
@@ -219,7 +240,9 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
         ? addWeeks(this._startDate!, -1)
         : this._period === 'month'
         ? addMonths(this._startDate!, -1)
-        : addYears(this._startDate!, -1);
+        : this._period === 'year'
+        ? addYears(this._startDate!, -1)
+        : addDays(this._startDate!, -1);
     this._setDate(newStart);
   }
 
@@ -231,7 +254,9 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
         ? addWeeks(this._startDate!, 1)
         : this._period === 'month'
         ? addMonths(this._startDate!, 1)
-        : addYears(this._startDate!, 1);
+        : this._period === 'year'
+        ? addYears(this._startDate!, 1)
+        : addDays(this._startDate!, 1);
     this._setDate(newStart);
   }
 
@@ -245,10 +270,14 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
         ? endOfWeek(startDate, { weekStartsOn })
         : this._period === 'month'
         ? endOfMonth(startDate)
-        : endOfYear(startDate);
+        : this._period === 'year'
+        ? endOfYear(startDate)
+        : this._period === 'custom' && customEndDate
+        ? endOfDay(customEndDate)
+        : this._endDate || endOfToday();
 
     const energyCollection = getEnergyDataCollection(this.hass);
-    energyCollection.setPeriod(startDate, customEndDate || endDate);
+    energyCollection.setPeriod(startDate, endDate);
     energyCollection.refresh();
   }
 
@@ -256,17 +285,19 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
     this._compare = energyData.startCompare !== undefined;
     this._startDate = energyData.start;
     this._endDate = energyData.end || endOfToday();
-    const dayDifference = differenceInDays(this._endDate, this._startDate);
+    const dayDifference = differenceInDays(this._endDate, this._startDate || endOfToday());
     this._period =
-      dayDifference < 1
-        ? 'day'
-        : dayDifference === 6
-        ? 'week'
-        : dayDifference > 26 && dayDifference < 31 // 28, 29, 30 or 31 days in a month
-        ? 'month'
-        : dayDifference === 364 || dayDifference === 365 // Leap year
-        ? 'year'
-        : undefined;
+      this._period !== 'custom'
+        ? dayDifference < 1
+          ? 'day'
+          : dayDifference === 6
+          ? 'week'
+          : dayDifference > 26 && dayDifference < 31 // 28, 29, 30 or 31 days in a month
+          ? 'month'
+          : dayDifference === 364 || dayDifference === 365 // Leap year
+          ? 'year'
+          : 'custom'
+        : 'custom';
   }
 
   private _toggleCompare() {
