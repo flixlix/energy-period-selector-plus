@@ -76,7 +76,7 @@ To configure this card, only the type is required, making it very easy to get st
 | today_button        | `boolean`  | true | If set to `true`, a button will be added to select today. |
 | prev_next_buttons   | `boolean`  | true | If set to `true`, buttons will be added to control the previous and next period. |
 | compare_button      | `string`  | undefined | If set, a button will be added to toggle the compare mode. Supported values are `icon` and `text`. |
-| period_buttons | `array` | undefined | If set, only buttons inside this array will be displayed. Supported values are `day`, `week`, `month` and `year`. |
+| period_buttons | `array` | undefined | If set, only buttons inside this array will be displayed. Supported values are `day`, `week`, `month`, `year` and `custom`. Order of your array will be applied. |
 | custom_period_label | `string` | undefined | If set, the label of the custom period button will be changed to this value. Otherwise will be synced to your HA language (If not, consider submitting a PR, adding your language to the localize function.) |
 
 
@@ -137,7 +137,43 @@ period_buttons:
   - year
 ```
 
+<hr/>
+<img width="1071" alt="Custom period picker" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/164c3318-e0e6-4cf6-a7e1-9efed26d5ecb">
 
+```yaml
+type: custom:energy-period-selector-plus
+card_background: true
+title: Custom Period Picker
+period_buttons:
+  - day
+  - week
+  - month
+  - year
+  - custom
+```
+
+<hr/>
+<img width="1071" alt="Custom period label" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/ee007bd1-ee01-4356-be33-98318fe371e1">
+
+```yaml
+type: custom:energy-period-selector-plus
+card_background: true
+title: Custom Period Picker
+period_buttons:
+  - day
+  - week
+  - month
+  - year
+  - custom
+custom_period_label: </|\>
+```
+
+
+<hr/>
+
+#### Real world Demo
+
+<img width="1071" alt="Custom period label" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/b01a6be8-4d68-4e6e-8593-985bdf253afb">
 
 
 
