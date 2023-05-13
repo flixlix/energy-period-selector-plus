@@ -70,6 +70,17 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
       return nothing;
     }
 
+    const computeToggleButtonLabel = (period: string) => {
+      if (period === 'custom') {
+        return (
+          this._config?.custom_period_label ||
+          this.hass.localize('ui.panel.lovelace.components.energy_period_selector.custom') ||
+          localize(`toggleButtons.${period}`)
+        );
+      }
+      return this.hass.localize(`ui.panel.lovelace.components.energy_period_selector.${period}`) || localize(`toggleButtons.${period}`);
+    };
+
     const viewButtons: ToggleButton[] = !this._config?.period_buttons
       ? [
           {
@@ -91,7 +102,7 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
         ]
       : this._config.period_buttons.map(period => {
           return {
-            label: this.hass.localize(`ui.panel.lovelace.components.energy_period_selector.${period}`) || localize(`toggleButtons.${period}`),
+            label: computeToggleButtonLabel(period),
             value: period,
           };
         });
