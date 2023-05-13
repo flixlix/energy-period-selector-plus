@@ -29,9 +29,10 @@ export const stylesBase = css`
   }
   .period {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
     justify-content: flex-end;
     align-items: center;
+    gap: 1rem;
   }
   :host([narrow]) .period {
     margin-bottom: 8px;
