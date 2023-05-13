@@ -1,0 +1,58 @@
+{
+    "common": {
+        "version": "Versão",
+        "invalid_configuration": "Configuração inválida",
+        "show_warning": "Mostrar Aviso",
+        "entity_not_found": "Estado da entidade não encontrado",
+        "missing_child": "Entidade filha em falta",
+        "loading": "A carregar..."
+    },
+    "toggleButtons": {
+        "custom": "Personalizado"
+    },
+    "editor": {
+        "yaml_disclaimer": "Por favor, utilize o modo YAML para as outras opções",
+        "docs": "Documentação",
+        "sections": "Secções",
+        "section": "Secção",
+        "add_section": "+ Adicionar secção",
+        "add_entity": "+ Adicionar entidade",
+        "entity_editor": "Editor de entidades",
+        "decimals": "decimais",
+        "fields": {
+            "autoconfig": "Autoconfig",
+            "print_yaml": "Imprimir configuração YAML gerada automaticamente",
+            "show_names": "Mostrar nomes",
+            "show_icons": "Mostrar ícones",
+            "show_states": "Mostrar estados",
+            "show_units": "Mostrar unidades",
+            "energy_date_selection": "Sincronizar com componente energy_date_selection",
+            "height": "Altura",
+            "wide": "Largo",
+            "min_box_height": "Altura mínima da caixa",
+            "min_box_distance": "Distância mínima da caixa",
+            "min_state": "Estado mínimo",
+            "round": "Arredondar",
+            "throttle": "Atraso",
+            "unit_prefix": "Prefixo da unidade",
+            "entity": "Entidade",
+            "type": "Tipo",
+            "children": "Filhos",
+            "name": "Nome",
+            "icon": "Ícone",
+            "color": "Cor",
+            "unit_of_measurement": "Unidade de medida",
+            "tap_action": "Ação de toque",
+            "color_on_state": "Mudar cor com base no estado",
+            "color_limit": "Limite de estado para mudança de cor",
+            "color_above": "Cor acima do limite",
+            "color_below": "Cor abaixo do limite"
+        },
+        "entity_types": {
+            "entity": "Entidade",
+            "remaining_parent_state": "Estado restante do pai",
+            "remaining_child_state": "Estado restante do filho",
+            "passthrough": "Encaminhar"
+        }
+    }
+}
