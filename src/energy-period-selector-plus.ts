@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { CSSResultGroup, html, LitElement, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators';
 import { HomeAssistant } from './type/home-assistant';
@@ -8,16 +9,21 @@ import './energy-period-selector-plus-base';
 import { localize } from './localize/localize';
 import { logError } from './logging';
 import { styles } from './style';
+import { mdiClose } from '@mdi/js';
+import { DateRangePickerRanges } from './datetime';
+import { addDays, endOfToday, endOfWeek, endOfYesterday, startOfToday, startOfWeek, startOfYesterday } from 'date-fns';
+import { firstWeekdayIndex } from './datetime/first-weekday';
+/* import './components/ha-date-input'; */
 
 registerCustomCard({
   type: 'energy-period-selector-plus',
   name: 'Energy Period Selector Plus',
   description: 'A custom card to change the Energy Period of your Energy Data.',
 });
-
 @customElement('energy-period-selector-plus')
 export class EnergyPeriodSelectorPlus extends LitElement implements LovelaceCard {
   @property({ attribute: false }) public hass!: HomeAssistant;
+  @property({ attribute: false }) public locale!: HomeAssistant['locale'];
   @state() private _config?: EnergyPeriodSelectorPlusConfig;
 
   public getCardSize(): Promise<number> | number {
@@ -36,7 +42,9 @@ export class EnergyPeriodSelectorPlus extends LitElement implements LovelaceCard
     const EnergyPeriodSelectorBase = html`
       <energy-period-selector-base .hass=${this.hass} ._config=${this._config} .collectionKey=${'_energy'}></energy-period-selector-base>
     `;
-    return this._config?.card_background ? html` <ha-card> ${EnergyPeriodSelectorBase} </ha-card> ` : html` ${EnergyPeriodSelectorBase} `;
+    return this._config?.card_background
+      ? html` <ha-card .header=${this._config?.title}> ${EnergyPeriodSelectorBase}</ha-card> `
+      : html` ${EnergyPeriodSelectorBase} `;
   }
 
   static styles = styles;

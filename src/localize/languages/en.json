@@ -7,6 +7,9 @@
     "missing_child": "Missing child entity",
     "loading": "Loading..."
   },
+  "toggleButtons": {
+    "custom": "Custom"
+  },
   "editor": {
     "yaml_disclaimer": "Please use yaml mode for the other options",
     "docs": "Documentation",

@@ -31,3 +31,6 @@ export interface FrontendLocaleData {
   time_format: TimeFormat;
   first_weekday: FirstWeekday;
 }
+export interface DateRangePickerRanges {
+  [key: string]: [Date, Date];
+}
