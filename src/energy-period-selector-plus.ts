@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { CSSResultGroup, html, LitElement, nothing } from 'lit';
+import { html, LitElement, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators';
 import { HomeAssistant } from './type/home-assistant';
 import { LovelaceCard } from './type/lovelace-card';
@@ -9,11 +9,6 @@ import './energy-period-selector-plus-base';
 import { localize } from './localize/localize';
 import { logError } from './logging';
 import { styles } from './style';
-import { mdiClose } from '@mdi/js';
-import { DateRangePickerRanges } from './datetime';
-import { addDays, endOfToday, endOfWeek, endOfYesterday, startOfToday, startOfWeek, startOfYesterday } from 'date-fns';
-import { firstWeekdayIndex } from './datetime/first-weekday';
-/* import './components/ha-date-input'; */
 
 registerCustomCard({
   type: 'energy-period-selector-plus',
