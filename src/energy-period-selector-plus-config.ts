@@ -7,5 +7,5 @@ export interface EnergyPeriodSelectorPlusConfig extends LovelaceCardConfig, Ener
   prev_next_buttons?: boolean;
   compare_button?: string;
   period_buttons?: string[];
-  default_period?: 'day' | 'week' | 'month' | 'year' | 'custom';
+  custom_period_label?: string;
 }

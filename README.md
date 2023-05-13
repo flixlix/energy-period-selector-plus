@@ -72,10 +72,12 @@ To configure this card, only the type is required, making it very easy to get st
 |---------------------| --------- |:------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | type                | `string`  | **required** | `custom:energy-period-selector-plus`. |
 | card_background     | `boolean`  | false | If set to `true`, a card will be added to the background of the card. |
+| title | `string` | undefined | If set, a title will be added to the card. |
 | today_button        | `boolean`  | true | If set to `true`, a button will be added to select today. |
 | prev_next_buttons   | `boolean`  | true | If set to `true`, buttons will be added to control the previous and next period. |
 | compare_button      | `string`  | undefined | If set, a button will be added to toggle the compare mode. Supported values are `icon` and `text`. |
 | period_buttons | `array` | undefined | If set, only buttons inside this array will be displayed. Supported values are `day`, `week`, `month` and `year`. |
+| custom_period_label | `string` | undefined | If set, the label of the custom period button will be changed to this value. Otherwise will be synced to your HA language (If not, consider submitting a PR, adding your language to the localize function.) |
 
 
 ### Example Configurations
