@@ -256,7 +256,6 @@ import {
   
   export interface PanelElement extends HTMLElement {
     hass?: HomeAssistant;
-    narrow?: boolean;
     route?: Route | null;
     panel?: PanelInfo;
   }

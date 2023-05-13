@@ -39,7 +39,6 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
   @property({ attribute: false }) public hass!: HomeAssistant;
   @state() public _config?: EnergyPeriodSelectorPlusConfig;
   @property() public collectionKey?: string;
-  @property({ type: Boolean, reflect: true }) public narrow?;
   @state() _startDate?: Date;
   @state() _endDate?: Date;
   @property() public ranges?: DateRangePickerRanges;
@@ -48,9 +47,6 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
 
   public connectedCallback() {
     super.connectedCallback();
-    if (this.narrow !== false) {
-      toggleAttribute(this, 'narrow', this.offsetWidth < 600);
-    }
   }
 
   async firstUpdated() {
@@ -171,7 +167,7 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
             @value-changed=${this._handleView}
             .dir=${computeRTLDirection(this.hass)}
           ></ha-button-toggle-group>
-          ${this.narrow && this._config?.compare_button === 'icon'
+          ${this._config?.compare_button === 'icon'
             ? html`<ha-icon-button
                 class="compare ${this._compare ? 'active' : ''}"
                 .path=${this._compare ? mdiCompareRemove : mdiCompare}
