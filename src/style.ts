@@ -4,6 +4,10 @@ export const styles = css`
   ha-card {
     padding: 1rem;
   }
+  h1 {
+    padding: 0;
+    padding-bottom: 1rem;
+  }
 `;
 
 export const stylesBase = css`
@@ -17,9 +21,8 @@ export const stylesBase = css`
   .row {
     display: flex;
     justify-content: flex-end;
-  }
-  :host([narrow]) .row {
     flex-direction: column-reverse;
+    margin-bottom: 8px;
   }
   .label {
     display: flex;
@@ -33,9 +36,6 @@ export const stylesBase = css`
     justify-content: flex-end;
     align-items: center;
     gap: 1rem;
-  }
-  :host([narrow]) .period {
-    margin-bottom: 8px;
   }
   mwc-button {
     margin-left: 8px;
