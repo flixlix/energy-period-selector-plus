@@ -22,13 +22,14 @@ export const stylesBase = css`
     display: flex;
     justify-content: flex-end;
     flex-direction: column-reverse;
-    margin-bottom: 8px;
+    gap: 1rem;
   }
   .label {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     font-size: 20px;
+    margin-bottom: 8px;
   }
   .period {
     display: flex;
