@@ -6,6 +6,7 @@
 ![commit_activity](https://img.shields.io/github/commit-activity/y/flixlix/energy-period-selector-plus?color=brightgreen&label=Commits&style=flat-square)
 
 ![Hero Image](https://github.com/flixlix/energy-period-selector-plus/assets/61006057/93068f68-b989-4ff1-95bf-52f6e394c85f)
+<img width="1244" alt="New Hero Image" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/b5064161-b8dd-4fa5-865a-5815635d3cbb">
 
 
 ## Goal
