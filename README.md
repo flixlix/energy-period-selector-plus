@@ -17,6 +17,7 @@ The goal is to deliver a card that fits in the overall design of the Energy Dash
 
 ## Features
 
+- UI Editor
 - Change style or hide Compare Button.
 - Use Background to fit other cards.
 - Choose which Periods are shown.
@@ -68,6 +69,14 @@ Else, if you prefer the graphical editor, use the menu to add the resource:
 ## Using the card
 
 To configure this card, only the type is required, making it very easy to get started.
+
+
+In addition to that, I developed a UI Editor, making it even easier to change the card according to your preferences. 🥳
+
+The UI Editor looks like this:
+
+<img width="1049" alt="Bildschirmfoto 2023-05-20 um 22 01 46" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/4f12ecd5-e1b5-4362-994c-228fa0fffdd5">
+
 
 
 ### Options
