@@ -9,6 +9,7 @@ import './energy-period-selector-plus-base';
 import { localize } from './localize/localize';
 import { logError } from './logging';
 import { styles } from './style';
+import { LovelaceCardEditor } from 'custom-card-helpers';
 
 registerCustomCard({
   type: 'energy-period-selector-plus',
@@ -25,13 +26,18 @@ export class EnergyPeriodSelectorPlus extends LitElement implements LovelaceCard
     return 1;
   }
 
+  public static async getConfigElement(): Promise<LovelaceCardEditor> {
+    await import('./ui-editor/ui-editor');
+    return document.createElement('energy-period-selector-editor');
+  }
+
   public setConfig(config: EnergyPeriodSelectorPlusConfig): void {
     this._config = config;
   }
 
   protected render() {
     if (!this.hass || !this._config) {
-      logError(localize('common.invalid_configuration'));
+      logError(localize('common.invalid_configuration') || 'Invalid configuration');
       return nothing;
     }
     const EnergyPeriodSelectorBase = html`
