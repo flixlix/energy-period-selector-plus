@@ -48,7 +48,7 @@ export const stylesBase = css`
   mwc-button {
     margin-left: 8px;
   }
-  ha-icon-button {
+  ha-icon-button:not(.today-icon) {
     margin-left: 4px;
     --mdc-icon-size: 20px;
   }
@@ -81,7 +81,7 @@ export const stylesBase = css`
     --mdc-button-disabled-ink-color: var(--disabled-text-color);
     --mdc-icon-button-ripple-opacity: 0.2;
   }
-  ha-icon-button {
+  ha-icon-button:not(.today-icon) {
     --mdc-icon-button-size: 28px;
   }
   ha-button-toggle-group {

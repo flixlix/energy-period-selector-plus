@@ -36,11 +36,37 @@ const plugins = [
 
 export default [
   {
-    input: 'src/energy-period-selector-plus.ts',
+    input: ['src/energy-period-selector-plus.ts'],
     output: {
       dir: 'dist',
       format: 'es',
+      inlineDynamicImports: true,
     },
-    plugins: [...plugins],
+    plugins: [
+      minifyHTML(),
+      terser({ output: { comments: false } }),
+      typescript({
+        declaration: false,
+      }),
+      nodeResolve(),
+      json({
+        compact: true,
+      }),
+      commonjs(),
+      babel({
+        exclude: "node_modules/**",
+        babelHelpers: "bundled",
+      }),
+      ...(dev ? [serve(serveOptions)] : [terser()]),
+    ],
+    moduleContext: (id) => {
+      const thisAsWindowForModules = [
+        "node_modules/@formatjs/intl-utils/lib/src/diff.js",
+        "node_modules/@formatjs/intl-utils/lib/src/resolve-locale.js",
+      ];
+      if (thisAsWindowForModules.some((id_) => id.trimRight().endsWith(id_))) {
+        return "window";
+      }
+    },
   },
 ];

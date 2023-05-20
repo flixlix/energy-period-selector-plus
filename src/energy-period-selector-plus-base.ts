@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { mdiCompare, mdiCompareRemove } from '@mdi/js';
+import { mdiCompare, mdiCompareRemove, mdiCalendarToday } from '@mdi/js';
 import {
   addDays,
   addMonths,
@@ -17,7 +17,6 @@ import {
   startOfToday,
   startOfWeek,
   startOfYear,
-  format,
 } from 'date-fns/esm';
 import { UnsubscribeFunc } from 'home-assistant-js-websocket';
 import { html, LitElement, nothing } from 'lit';
@@ -77,7 +76,7 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
       return this.hass.localize(`ui.panel.lovelace.components.energy_period_selector.${period}`) || localize(`toggleButtons.${period}`);
     };
 
-    const viewButtons: ToggleButton[] = !this._config?.period_buttons
+    const periodButtons: ToggleButton[] = !this._config?.period_buttons
       ? [
           {
             label: this.hass.localize('ui.panel.lovelace.components.energy_period_selector.day'),
@@ -127,6 +126,22 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
         </ha-date-input>
       </div>
     `;
+
+    const todayButtonText = html` <mwc-button dense outlined @click=${this._pickToday}>
+      ${this.hass.localize('ui.panel.lovelace.components.energy_period_selector.today')}
+    </mwc-button>`;
+
+    const todayButtonIcon = html` <ha-icon-button
+      @click=${this._pickToday}
+      class="today-icon"
+      .label=${this.hass.localize('ui.panel.lovelace.components.energy_period_selector.today')}
+      .path=${mdiCalendarToday}
+    >
+    </ha-icon-button>`;
+
+    const todayButton =
+      this._config?.today_button_type === false ? nothing : this._config?.today_button_type === 'icon' ? todayButtonIcon : todayButtonText;
+
     return html`
       <div class="row">
         ${this._period === 'custom'
@@ -152,22 +167,18 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
                       ></ha-icon-button-next>
                     `
                   : nothing}
-                ${this._config?.today_button !== false
-                  ? html`<mwc-button dense outlined @click=${this._pickToday}>
-                      ${this.hass.localize('ui.panel.lovelace.components.energy_period_selector.today')}
-                    </mwc-button>`
-                  : nothing}
+                ${todayButton}
               </div>
             `}
         <div class="period">
           <ha-button-toggle-group
-            .buttons=${viewButtons}
+            .buttons=${periodButtons}
             .active=${this._period}
             dense
             @value-changed=${this._handleView}
             .dir=${computeRTLDirection(this.hass)}
           ></ha-button-toggle-group>
-          ${this._config?.compare_button === 'icon'
+          ${this._config?.compare_button_type === 'icon'
             ? html`<ha-icon-button
                 class="compare ${this._compare ? 'active' : ''}"
                 .path=${this._compare ? mdiCompareRemove : mdiCompare}
@@ -175,11 +186,11 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
                 dense
                 outlined
               >
-                ${this.hass.localize('ui.panel.lovelace.components.energy_period_selector.compare')}
+                ${this._config.compare_button_label ?? this.hass.localize('ui.panel.lovelace.components.energy_period_selector.compare')}
               </ha-icon-button>`
-            : this._config?.compare_button === 'text'
+            : this._config?.compare_button_type === 'text'
             ? html`<mwc-button class="compare ${this._compare ? 'active' : ''}" @click=${this._toggleCompare} dense outlined>
-                ${this.hass.localize('ui.panel.lovelace.components.energy_period_selector.compare')}
+                ${this._config.compare_button_label ?? this.hass.localize('ui.panel.lovelace.components.energy_period_selector.compare')}
               </mwc-button>`
             : nothing}
         </div>
