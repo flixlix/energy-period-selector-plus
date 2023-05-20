@@ -88,9 +88,9 @@ The UI Editor looks like this:
 | type                | `string`  | **required** | `custom:energy-period-selector-plus`. |
 | card_background     | `boolean`  | false | If set to `true`, a card will be added to the background of the card. |
 | title | `string` | undefined | If set, a title will be added to the card. |
-| today_button        | `boolean`  | true | If set to `true`, a button will be added to select today. |
+| today_button_type        | `boolean`  | true | If set to `true`, a button will be added to select today. |
 | prev_next_buttons   | `boolean`  | true | If set to `true`, buttons will be added to control the previous and next period. |
-| compare_button      | `string`  | undefined | If set, a button will be added to toggle the compare mode. Supported values are `icon` and `text`. |
+| compare_button_type      | `string`  | undefined | If set, a button will be added to toggle the compare mode. Supported values are `icon` and `text`. |
 | period_buttons | `array` | undefined | If set, only buttons inside this array will be displayed. Supported values are `day`, `week`, `month`, `year` and `custom`. Order of your array will be applied. |
 | custom_period_label | `string` | undefined | If set, the label of the custom period button will be changed to this value. Otherwise will be synced to your HA language (If not, consider submitting a PR, adding your language to the localize function.) |
 
@@ -119,7 +119,7 @@ prev_next_buttons: false
 type: custom:energy-period-selector-plus
 card_background: true
 title: No Today Button
-today_button: false
+today_button_type: false
 ```
 <hr/>
 <img width="1219" alt="Text compare button" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/8dc6d530-9771-47c8-b291-fd41229e4916">
@@ -128,7 +128,7 @@ today_button: false
 type: custom:energy-period-selector-plus
 card_background: true
 title: Text Compare Button
-compare_button: text
+compare_button_type: text
 ```
 <hr/>
 <img width="1301" alt="Icon compare button" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/780e7460-4380-4288-8376-033629725501">
@@ -137,7 +137,7 @@ compare_button: text
 type: custom:energy-period-selector-plus
 card_background: true
 title: Icon Compare Button
-compare_button: icon
+compare_button_type: icon
 ```
 <hr/>
 <img width="1071" alt="No week button" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/49cafcfa-daa0-4ae1-973a-71a88402bbd8">
