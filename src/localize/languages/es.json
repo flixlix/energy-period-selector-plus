@@ -1,0 +1,49 @@
+{
+    "common": {
+        "version": "Versión",
+        "invalid_configuration": "Configuración inválida",
+        "show_warning": "Mostrar advertencia",
+        "entity_not_found": "Estado de entidad no encontrado",
+        "missing_child": "Entidad secundaria faltante",
+        "loading": "Cargando..."
+    },
+    "toggleButtons": {
+        "custom": "Personalizado"
+    },
+    "editor": {
+        "yaml_disclaimer": "Por favor, utiliza el modo YAML para las otras opciones",
+        "docs": "Documentación",
+        "sections": "Secciones",
+        "section": "Sección",
+        "add_section": "+ Agregar sección",
+        "add_entity": "+ Agregar entidad",
+        "entity_editor": "Editor de entidades",
+        "decimals": "decimales",
+        "fields": {
+            "card_background": "Fondo de tarjeta",
+            "prev_next_buttons": "Mostrar botones Anterior/Siguiente",
+            "compare_button_type": "Tipo de botón de comparación",
+            "custom_period_label": "Etiqueta de período personalizada",
+            "compare_button_options": {
+                "icon": "Ícono",
+                "text": "Texto"
+            },
+            "period_buttons": "Botones de período",
+            "today_button_type": "Tipo de botón Hoy",
+            "compare_button_label": "Etiqueta del botón de comparación",
+            "period_buttons_options": {
+                "day": "Día",
+                "week": "Semana",
+                "month": "Mes",
+                "year": "Año",
+                "custom": "Personalizado"
+            }
+        },
+        "entity_types": {
+            "entity": "Entidad",
+            "remaining_parent_state": "Estado del padre restante",
+            "remaining_child_state": "Estado del hijo restante",
+            "passthrough": "Pasar a través"
+        }
+    }
+}
