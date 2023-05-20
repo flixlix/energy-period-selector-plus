@@ -6,11 +6,13 @@ import * as pt_PT from './languages/pt-PT.json';
 const languages: any = {
   en: en,
   de: de,
-  'pt-PT': pt_PT,
+  pt: pt_PT,
 };
 
 export function localize(string: string, search = '', replace = '') {
   const lang = (localStorage.getItem('selectedLanguage') || 'en').replace(/['"]+/g, '').replace('-', '_');
+
+  console.log(lang);
 
   let translated: string | undefined;
 
