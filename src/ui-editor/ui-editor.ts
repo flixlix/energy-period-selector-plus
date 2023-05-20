@@ -118,11 +118,11 @@ export class EnergyPeriodSelectorEditor extends LitElement implements LovelaceCa
             {
               type: 'multi_select',
               options: {
-                day: 'day',
-                week: 'week',
-                month: 'month',
-                year: 'year',
-                custom: 'custom',
+                day: localize('editor.fields.period_buttons_options.day'),
+                week: localize('editor.fields.period_buttons_options.week'),
+                month: localize('editor.fields.period_buttons_options.month'),
+                year: localize('editor.fields.period_buttons_options.year'),
+                custom: localize('editor.fields.period_buttons_options.custom'),
               },
               name: 'period_buttons',
               default: ['day', 'week', 'month', 'year'],
@@ -152,8 +152,6 @@ export class EnergyPeriodSelectorEditor extends LitElement implements LovelaceCa
       compare_button_type: this._config.compare_button_type ?? '',
       today_button_type: this._config.today_button_type ?? 'text',
       period_buttons: this._config.period_buttons ?? ['day', 'week', 'month', 'year'],
-      custom_period_label: this._config.custom_period_label ?? localize(`toggleButtons.custom`),
-      compare_button_label: this._config.compare_button_label ?? this.hass.localize('ui.panel.lovelace.components.energy_period_selector.compare'),
     };
 
     const schema = this._schema(data.compare_button_type === 'text', data.period_buttons.includes('custom'));
