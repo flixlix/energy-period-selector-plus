@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { mdiCompare, mdiCompareRemove, mdiCalendarToday } from '@mdi/js';
+import { mdiCompare, mdiCompareRemove, mdiCalendarTodayOutline } from '@mdi/js';
 import {
   addDays,
   addMonths,
@@ -135,7 +135,7 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
       @click=${this._pickToday}
       class="today-icon"
       .label=${this.hass.localize('ui.panel.lovelace.components.energy_period_selector.today')}
-      .path=${mdiCalendarToday}
+      .path=${mdiCalendarTodayOutline}
     >
     </ha-icon-button>`;
 
