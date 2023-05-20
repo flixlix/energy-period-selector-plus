@@ -30,7 +30,14 @@
       },
       "period_buttons": "Period Buttons",
       "today_button_type": "Today Button Type",
-      "compare_button_label": "Compare Button Label"
+      "compare_button_label": "Compare Button Label",
+      "period_buttons_options": {
+        "day": "Day",
+        "week": "Week",
+        "month": "Month",
+        "year": "Year",
+        "custom": "Custom"
+      }
     },
     "entity_types": {
       "entity": "Entity",
