@@ -15,12 +15,13 @@ The main goal of this card is to expand the functionality and customizability of
 
 The goal is to deliver a card that fits in the overall design of the Energy Dashboard, while providing more features.
 
-## Features
+## Features & Bugfixes
 
 - UI Editor
 - Change style or hide Compare Button.
 - Use Background to fit other cards.
 - Choose which Periods are shown.
+- Make Compare work.
 
 ## Install
 
