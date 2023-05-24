@@ -28,8 +28,9 @@ export const stylesBase = css`
     justify-content: end;
     align-items: center;
     flex-direction: row-reverse;
-    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
     column-gap: 1rem;
+    row-gap: 0.5rem;
     min-width: 342px;
   }
   .label {
@@ -37,7 +38,6 @@ export const stylesBase = css`
     justify-content: flex-end;
     align-items: center;
     font-size: 20px;
-    /* margin-bottom: 8px; */
   }
   .period {
     display: flex;
