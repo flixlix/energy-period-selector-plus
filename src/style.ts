@@ -25,10 +25,11 @@ export const stylesBase = css`
   }
   .row {
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    flex-direction: column-reverse;
-    gap: 1rem;
+    justify-content: end;
+    align-items: center;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    column-gap: 1rem;
     min-width: 342px;
   }
   .label {
@@ -36,7 +37,7 @@ export const stylesBase = css`
     justify-content: flex-end;
     align-items: center;
     font-size: 20px;
-    margin-bottom: 8px;
+    /* margin-bottom: 8px; */
   }
   .period {
     display: flex;
@@ -44,6 +45,7 @@ export const stylesBase = css`
     justify-content: flex-end;
     align-items: center;
     gap: 1rem;
+    margin-left: 12px;
   }
   mwc-button {
     margin-left: 8px;
