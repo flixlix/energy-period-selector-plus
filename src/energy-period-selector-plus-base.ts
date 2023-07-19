@@ -40,7 +40,6 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
   @property() public collectionKey?: string;
   @state() _startDate?: Date;
   @state() _endDate?: Date;
-  @property() public ranges?: DateRangePickerRanges;
   @state() private _period?: 'day' | 'week' | 'month' | 'year' | 'custom';
   @state() private _compare = false;
 
@@ -48,16 +47,20 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
     super.connectedCallback();
   }
 
+  public disconnectedCallback() {
+    super.disconnectedCallback();
+  }
+
   async firstUpdated() {
     (await (window as any).loadCardHelpers()).importMoreInfoControl('input_datetime'); // This is needed to render the datepicker!!!
   }
 
   public hassSubscribe(): UnsubscribeFunc[] {
-    if (!this.collectionKey || !this.hass) {
-      return [];
-    }
-
-    return [getEnergyDataCollection(this.hass).subscribe(data => this._updateDates(data))];
+    return [
+      getEnergyDataCollection(this.hass, {
+        key: this.collectionKey,
+      }).subscribe((data) => this._updateDates(data)),
+    ];
   }
 
   protected render() {
