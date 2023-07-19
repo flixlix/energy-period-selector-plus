@@ -1,5 +1,7 @@
 # Energy Period Selector Plus
 
+> Warning ⚠️: As of HA Release 2023.06, this card is unfortunately broken. I'm currently debugging and fixing the issue and will release a fix as soon as possible
+
 [![ko-fi support](https://img.shields.io/badge/support-me-ff5e5b?style=flat-square&logo=ko-fi)](https://ko-fi.com/flixlix)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/flixlix/energy-period-selector-plus?style=flat-square)
 ![GitHub all releases](https://img.shields.io/github/downloads/flixlix/energy-period-selector-plus/total?style=flat-square)
