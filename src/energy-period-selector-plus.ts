@@ -40,12 +40,10 @@ export class EnergyPeriodSelectorPlus extends LitElement implements LovelaceCard
       logError(localize('common.invalid_configuration') || 'Invalid configuration');
       return nothing;
     }
-    const EnergyPeriodSelectorBase = html`
-      <energy-period-selector-base .hass=${this.hass} ._config=${this._config} .collectionKey=${'_energy'}></energy-period-selector-base>
-    `;
+    const energyPeriodSelectorBase = html` <energy-period-selector-base .hass=${this.hass} ._config=${this._config}></energy-period-selector-base> `;
     return this._config?.card_background
-      ? html` <ha-card .header=${this._config?.title}> ${EnergyPeriodSelectorBase}</ha-card> `
-      : html` ${EnergyPeriodSelectorBase} `;
+      ? html` <ha-card .header=${this._config?.title}> ${energyPeriodSelectorBase}</ha-card> `
+      : html` ${energyPeriodSelectorBase} `;
   }
 
   static styles = styles;
