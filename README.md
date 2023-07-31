@@ -27,16 +27,13 @@ The goal is to deliver a card that fits in the overall design of the Energy Dash
 
 ### HACS (recommended)
 
-This card is not direclty available in [HACS](https://hacs.xyz/) (Home Assistant Community Store), but can be added using "Custom Repositories".
+This card is direclty available in [HACS](https://hacs.xyz/) (Home Assistant Community Store).
 _HACS is a third party community store and is not included in Home Assistant out of the box._
 To install this:
 
 - Go to HACS
 - Click on `Frontend`
-- Click on the overflow Menu (three vertical dots)
-- Click on `Custom Repositories`
-- Type this URL [https://github.com/flixlix/energy-period-selector-plus](https://github.com/flixlix/energy-period-selector-plus)
-- In "Category", select `lovelace`
+- Search for `Energy Period Selector Plus`
 - Install via UI
 
 <details>  <summary>Manual Install</summary>
