@@ -30,6 +30,7 @@
       },
       "period_buttons": "Period Buttons",
       "today_button_type": "Today Button Type",
+      "default_period": "Default Period",
       "compare_button_label": "Compare Button Label",
       "period_buttons_options": {
         "day": "Day",

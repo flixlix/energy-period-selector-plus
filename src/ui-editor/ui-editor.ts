@@ -43,6 +43,7 @@ export class EnergyPeriodSelectorEditor extends LitElement implements LovelaceCa
           period_buttons: optional(any()),
           custom_period_label: optional(string()),
           compare_button_label: optional(string()),
+          default_period: optional(string()),
         }),
       ),
     );
@@ -106,6 +107,21 @@ export class EnergyPeriodSelectorEditor extends LitElement implements LovelaceCa
                 { value: false, label: '' },
                 { value: 'icon', label: localize('editor.fields.compare_button_options.icon') },
                 { value: 'text', label: localize('editor.fields.compare_button_options.text') },
+              ],
+              mode: 'dropdown',
+            },
+          },
+        },
+        {
+          name: 'default_period',
+          selector: {
+            select: {
+              options: [
+                { value: 'day', label: localize('editor.fields.period_buttons_options.day') },
+                { value: 'week', label: localize('editor.fields.period_buttons_options.week') },
+                { value: 'month', label: localize('editor.fields.period_buttons_options.month') },
+                { value: 'year', label: localize('editor.fields.period_buttons_options.year') },
+                { value: 'custom', label: localize('editor.fields.period_buttons_options.custom') },
               ],
               mode: 'dropdown',
             },

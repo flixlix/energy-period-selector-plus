@@ -8,7 +8,6 @@
 ![Hero Image](https://github.com/flixlix/energy-period-selector-plus/assets/61006057/93068f68-b989-4ff1-95bf-52f6e394c85f)
 <img width="1244" alt="New Hero Image" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/b5064161-b8dd-4fa5-865a-5815635d3cbb">
 
-
 ## Goal
 
 The main goal of this card is to expand the functionality and customizability of the official [Energy Date Picker Card](https://www.home-assistant.io/dashboards/energy/#energy-date-picker) from Home Assistant.
@@ -61,13 +60,12 @@ Else, if you prefer the graphical editor, use the menu to add the resource:
 5. Hit (+ ADD RESOURCE) icon
 6. Enter URL `/local/energy-period-selector-plus.js` and select type "JavaScript Module".
    (Use `/hacsfiles/energy-period-selector-plus/energy-period-selector-plus.js` and select "JavaScript Module" for HACS install if HACS didn't do it already)
- 
+
 </details>
    
 ## Using the card
 
 To configure this card, only the type is required, making it very easy to get started.
-
 
 In addition to that, I developed a UI Editor, making it even easier to change the card according to your preferences. 🥳
 
@@ -75,23 +73,21 @@ The UI Editor looks like this:
 
 <img width="1049" alt="Bildschirmfoto 2023-05-20 um 22 01 46" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/4f12ecd5-e1b5-4362-994c-228fa0fffdd5">
 
-
-
 ### Options
 
 #### Card options
 
-| Name                | Type      |   Default    | Description                                                                                                                                                                  |
-|---------------------| --------- |:------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| type                | `string`  | **required** | `custom:energy-period-selector-plus`. |
-| card_background     | `boolean`  | false | If set to `true`, a card will be added to the background of the card. |
-| title | `string` | undefined | If set, a title will be added to the card. |
-| today_button_type        | `boolean`  | true | If set to `true`, a button will be added to select today. |
-| prev_next_buttons   | `boolean`  | true | If set to `true`, buttons will be added to control the previous and next period. |
-| compare_button_type      | `string`  | undefined | If set, a button will be added to toggle the compare mode. Supported values are `icon` and `text`. |
-| period_buttons | `array` | undefined | If set, only buttons inside this array will be displayed. Supported values are `day`, `week`, `month`, `year` and `custom`. Order of your array will be applied. |
-| custom_period_label | `string` | undefined | If set, the label of the custom period button will be changed to this value. Otherwise will be synced to your HA language (If not, consider submitting a PR, adding your language to the localize function.) |
-
+| Name                | Type                                       |   Default    | Description                                                                                                                                                                                                  |
+| ------------------- | ------------------------------------------ | :----------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| type                | `string`                                   | **required** | `custom:energy-period-selector-plus`.                                                                                                                                                                        |
+| card_background     | `boolean`                                  |    false     | If set to `true`, a card will be added to the background of the card.                                                                                                                                        |
+| title               | `string`                                   |  undefined   | If set, a title will be added to the card.                                                                                                                                                                   |
+| today_button_type   | `boolean`                                  |     true     | If set to `true`, a button will be added to select today.                                                                                                                                                    |
+| prev_next_buttons   | `boolean`                                  |     true     | If set to `true`, buttons will be added to control the previous and next period.                                                                                                                             |
+| compare_button_type | `string`                                   |  undefined   | If set, a button will be added to toggle the compare mode. Supported values are `icon` and `text`.                                                                                                           |
+| period_buttons      | `array`                                    |  undefined   | If set, only buttons inside this array will be displayed. Supported values are `day`, `week`, `month`, `year` and `custom`. Order of your array will be applied.                                             |
+| custom_period_label | `string`                                   |  undefined   | If set, the label of the custom period button will be changed to this value. Otherwise will be synced to your HA language (If not, consider submitting a PR, adding your language to the localize function.) |
+| default_period      | `day`, `week`, `month`, `year` or `custom` |    `day`     | If set, the card will be initialized with this period. **Warning: setting this to `year` may result in significant slow down when loading the card.**                                                        |
 
 ### Example Configurations
 
@@ -101,6 +97,7 @@ The UI Editor looks like this:
 type: custom:energy-period-selector-plus
 card_background: true
 ```
+
 <hr/>
 <img width="1322" alt="No previous or next controls" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/38238f3f-f0d7-46f6-a33b-984e16707210">
 
@@ -110,6 +107,7 @@ card_background: true
 title: No Previous or Next Controls
 prev_next_buttons: false
 ```
+
 <hr/>
 <img width="1231" alt="No today button" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/1a26100d-5ccf-4713-9646-f52b392039cd">
 
@@ -119,6 +117,7 @@ card_background: true
 title: No Today Button
 today_button_type: false
 ```
+
 <hr/>
 <img width="1219" alt="Text compare button" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/8dc6d530-9771-47c8-b291-fd41229e4916">
 
@@ -128,6 +127,7 @@ card_background: true
 title: Text Compare Button
 compare_button_type: text
 ```
+
 <hr/>
 <img width="1301" alt="Icon compare button" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/780e7460-4380-4288-8376-033629725501">
 
@@ -137,6 +137,7 @@ card_background: true
 title: Icon Compare Button
 compare_button_type: icon
 ```
+
 <hr/>
 <img width="1071" alt="No week button" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/49cafcfa-daa0-4ae1-973a-71a88402bbd8">
 
@@ -181,13 +182,8 @@ period_buttons:
 custom_period_label: </|\>
 ```
 
-
 <hr/>
 
 #### Real world Demo
 
 <img width="1071" alt="Custom period label" src="https://github.com/flixlix/energy-period-selector-plus/assets/61006057/b01a6be8-4d68-4e6e-8593-985bdf253afb">
-
-
-
-

@@ -28,7 +28,7 @@ import { computeRTLDirection } from './utils/compute_rtl';
 import { EnergyData, getEnergyDataCollection } from './energy';
 import { SubscribeMixin } from './energy/subscribe-mixin';
 import { HomeAssistant } from './type/home-assistant';
-import { EnergyPeriodSelectorPlusConfig } from './energy-period-selector-plus-config';
+import { EnergyPeriodSelectorPlusConfig, Period } from './energy-period-selector-plus-config';
 import type { DateRangePickerRanges } from './datetime';
 import { localize } from './localize/localize';
 import { stylesBase } from './style';
@@ -40,7 +40,7 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
   @property() public collectionKey?: string;
   @state() _startDate?: Date;
   @state() _endDate?: Date;
-  @state() private _period?: 'day' | 'week' | 'month' | 'year' | 'custom';
+  @state() private _period?: Period;
   @state() private _compare = false;
 
   public connectedCallback() {
@@ -53,6 +53,7 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
 
   async firstUpdated() {
     (await (window as any).loadCardHelpers()).importMoreInfoControl('input_datetime'); // This is needed to render the datepicker!!!
+    if (this._config?.default_period) this._handleView({ detail: { value: this._config?.default_period } });
   }
 
   public hassSubscribe(): UnsubscribeFunc[] {
@@ -64,8 +65,12 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
   }
 
   protected render() {
-    if (!this.hass || !this._startDate) {
+    if (!this.hass) {
       return nothing;
+    }
+
+    if (!this._startDate) {
+      return html`<p>Loading...</p> `;
     }
 
     const computeToggleButtonLabel = (period: string) => {
@@ -207,7 +212,15 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
     }
   }
 
-  private _handleView(ev: CustomEvent): void {
+  private _handleView(
+    ev:
+      | CustomEvent
+      | {
+          detail: {
+            value: Period;
+          };
+        },
+  ): void {
     this._period = ev.detail.value;
     const today = startOfToday();
     const start =

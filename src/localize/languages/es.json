@@ -23,6 +23,7 @@
             "card_background": "Fondo de tarjeta",
             "prev_next_buttons": "Mostrar botones Anterior/Siguiente",
             "compare_button_type": "Tipo de botón de comparación",
+            "default_period": "Período predeterminado",
             "custom_period_label": "Etiqueta de período personalizada",
             "compare_button_options": {
                 "icon": "Ícono",

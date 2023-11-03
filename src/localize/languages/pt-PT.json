@@ -23,6 +23,7 @@
             "card_background": "Fundo do cartão",
             "prev_next_buttons": "Mostrar Botões de controle",
             "compare_button_type": "Tipo de Botão para Comparar",
+            "default_period": "Período predefinido",
             "custom_period_label": "Rótulo do Período Personalizado",
             "compare_button_options": {
                 "icon": "Ícone",
