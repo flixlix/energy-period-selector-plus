@@ -59,7 +59,7 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
     return [
       getEnergyDataCollection(this.hass, {
         key: this.collectionKey,
-      }).subscribe((data) => this._updateDates(data)),
+      }).subscribe(data => this._updateDates(data)),
     ];
   }
 
@@ -70,31 +70,27 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
 
     const computeToggleButtonLabel = (period: string) => {
       if (period === 'custom') {
-        return (
-          this._config?.custom_period_label ||
-          this.hass.localize('ui.panel.lovelace.components.energy_period_selector.custom') ||
-          localize(`toggleButtons.${period}`)
-        );
+        return this._config?.custom_period_label || localize(`toggleButtons.${period}`) || period;
       }
-      return this.hass.localize(`ui.panel.lovelace.components.energy_period_selector.${period}`) || localize(`toggleButtons.${period}`);
+      return this.hass.localize(`ui.components.calendar.event.rrule.${period}`);
     };
 
     const periodButtons: ToggleButton[] = !this._config?.period_buttons
       ? [
           {
-            label: this.hass.localize('ui.panel.lovelace.components.energy_period_selector.day'),
+            label: this.hass.localize('ui.components.calendar.event.rrule.day'),
             value: 'day',
           },
           {
-            label: this.hass.localize('ui.panel.lovelace.components.energy_period_selector.week'),
+            label: this.hass.localize('ui.components.calendar.event.rrule.week'),
             value: 'week',
           },
           {
-            label: this.hass.localize('ui.panel.lovelace.components.energy_period_selector.month'),
+            label: this.hass.localize('ui.components.calendar.event.rrule.month'),
             value: 'month',
           },
           {
-            label: this.hass.localize('ui.panel.lovelace.components.energy_period_selector.year'),
+            label: this.hass.localize('ui.components.calendar.event.rrule.year'),
             value: 'year',
           },
         ]
