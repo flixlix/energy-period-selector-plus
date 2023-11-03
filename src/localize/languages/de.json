@@ -30,6 +30,7 @@
   },
   "period_buttons": "Zeitraumschaltflächen",
   "today_button_type": "Heutiger Schaltflächentyp",
+  "default_period": "Standardzeitraum",
   "compare_button_label": "Beschriftung der Vergleichsschaltfläche",
   "period_buttons_options": {
   "day": "Tag",
