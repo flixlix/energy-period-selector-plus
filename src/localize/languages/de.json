@@ -29,6 +29,7 @@
   "text": "Text"
   },
   "period_buttons": "Zeitraumschaltflächen",
+  "rolling_periods": "Rollen Zeitraum",
   "today_button_type": "Heutiger Schaltflächentyp",
   "compare_button_label": "Beschriftung der Vergleichsschaltfläche",
   "period_buttons_options": {

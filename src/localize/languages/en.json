@@ -29,6 +29,7 @@
         "text": "Text"
       },
       "period_buttons": "Period Buttons",
+      "rolling_periods": "Rolling periods",
       "today_button_type": "Today Button Type",
       "compare_button_label": "Compare Button Label",
       "period_buttons_options": {

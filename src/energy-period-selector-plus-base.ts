@@ -2,6 +2,7 @@
 import { mdiCompare, mdiCompareRemove, mdiCalendarTodayOutline } from '@mdi/js';
 import {
   addDays,
+  addMilliseconds,
   addMonths,
   addWeeks,
   addYears,
@@ -147,12 +148,14 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
           ? dateRangePicker
           : html`
               <div class="label">
-                ${this._period === 'day'
+                ${this._period === 'day' && !this._config?.rolling_periods
                   ? formatDate(this._startDate, this.hass.locale)
-                  : this._period === 'month'
+                  : this._period === 'month' && !this._config?.rolling_periods
                   ? formatDateMonthYear(this._startDate, this.hass.locale)
-                  : this._period === 'year'
+                  : this._period === 'year' && !this._config?.rolling_periods
                   ? formatDateYear(this._startDate, this.hass.locale)
+                  : this._period === 'year'
+                  ? `${formatDateMonthYear(this._startDate, this.hass.locale)} – ${formatDateMonthYear(this._endDate || new Date(), this.hass.locale)}`
                   : `${formatDateShort(this._startDate, this.hass.locale)} – ${formatDateShort(this._endDate || new Date(), this.hass.locale)}`}
                 ${this._config?.prev_next_buttons !== false
                   ? html`
@@ -216,37 +219,80 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
         start: this._startDate,
         end: this._endDate || endOfToday(),
       })
-        ? today
+        ? this._config?.rolling_periods
+        ? new Date()
+        : today
         : this._startDate;
 
     const weekStartsOn = firstWeekdayIndex(this.hass.locale);
 
     this._setDate(
-      this._period === 'day'
-        ? startOfDay(start)
-        : this._period === 'week'
-        ? startOfWeek(start, { weekStartsOn })
-        : this._period === 'month'
-        ? startOfMonth(start)
-        : this._period === 'year'
-        ? startOfYear(start)
-        : this._startDate || startOfToday(),
+      this._beginningOfPeriod(start),
       this._period === 'custom' ? this._endDate : undefined,
     );
   }
 
-  private _pickToday() {
+  private _beginningOfPeriod(start: Date): Date {
     const weekStartsOn = firstWeekdayIndex(this.hass.locale);
 
-    this._setDate(
+    return this._config?.rolling_periods
+    ? addMilliseconds(
       this._period === 'day'
-        ? startOfToday()
-        : this._period === 'week'
-        ? startOfWeek(new Date(), { weekStartsOn })
-        : this._period === 'month'
-        ? startOfMonth(new Date())
-        : startOfYear(new Date()),
+      ? addDays(start, -1)
+      : this._period === 'week'
+      ? addWeeks(start, -1)
+      : this._period === 'month'
+      ? addMonths(start, -1)
+      : this._period === 'year'
+      ? addYears(start, -1)
+      : start
+    , 1) : (
+      this._period === 'day'
+      ? startOfToday()
+      : this._period === 'week'
+      ? startOfWeek(start, { weekStartsOn })
+      : this._period === 'month'
+      ? startOfMonth(start)
+      : this._period === 'year'
+      ? startOfYear(start)
+      : start
     );
+  }
+
+  private _endOfPeriod(startDate: Date, customEndDate?: Date): Date {
+    const weekStartsOn = firstWeekdayIndex(this.hass.locale);
+
+    return this._config?.rolling_periods
+    ? addMilliseconds(
+      this._period === 'day'
+      ? addDays(startDate!, 1)
+      : this._period === 'week'
+      ? addWeeks(startDate!, 1)
+      : this._period === 'month'
+      ? addMonths(startDate!, 1)
+      : this._period === 'year'
+      ? addYears(startDate!, 1)
+      : this._period === 'custom' && customEndDate
+      ? endOfDay(customEndDate)
+      : this._endDate || endOfToday()
+    , -1)
+    : (
+      this._period === 'day'
+      ? endOfDay(startDate)
+      : this._period === 'week'
+      ? endOfWeek(startDate, { weekStartsOn })
+      : this._period === 'month'
+      ? endOfMonth(startDate)
+      : this._period === 'year'
+      ? endOfYear(startDate)
+      : this._period === 'custom' && customEndDate
+      ? endOfDay(customEndDate)
+      : this._endDate || endOfToday()
+    );
+  }
+
+  private _pickToday() {
+    this._setDate(this._beginningOfPeriod(new Date()));
   }
 
   private _pickPrevious() {
@@ -278,20 +324,7 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
   }
 
   private _setDate(startDate: Date, customEndDate?: Date) {
-    const weekStartsOn = firstWeekdayIndex(this.hass.locale);
-
-    const endDate: Date =
-      this._period === 'day'
-        ? endOfDay(startDate)
-        : this._period === 'week'
-        ? endOfWeek(startDate, { weekStartsOn })
-        : this._period === 'month'
-        ? endOfMonth(startDate)
-        : this._period === 'year'
-        ? endOfYear(startDate)
-        : this._period === 'custom' && customEndDate
-        ? endOfDay(customEndDate)
-        : this._endDate || endOfToday();
+    const endDate: Date = this._endOfPeriod(startDate, customEndDate);
 
     const energyCollection = getEnergyDataCollection(this.hass);
     energyCollection.setPeriod(startDate, endDate);

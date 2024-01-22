@@ -41,6 +41,7 @@ export class EnergyPeriodSelectorEditor extends LitElement implements LovelaceCa
           compare_button_type: optional(string()),
           today_button_type: optional(any()),
           period_buttons: optional(any()),
+          rolling_periods: optional(any()),
           custom_period_label: optional(string()),
           compare_button_label: optional(string()),
         }),
@@ -67,6 +68,10 @@ export class EnergyPeriodSelectorEditor extends LitElement implements LovelaceCa
             },
             {
               name: 'prev_next_buttons',
+              selector: { boolean: {} },
+            },
+            {
+              name: 'rolling_periods',
               selector: { boolean: {} },
             },
           ],
@@ -152,6 +157,7 @@ export class EnergyPeriodSelectorEditor extends LitElement implements LovelaceCa
       compare_button_type: this._config.compare_button_type ?? '',
       today_button_type: this._config.today_button_type ?? 'text',
       period_buttons: this._config.period_buttons ?? ['day', 'week', 'month', 'year'],
+      rolling_periods: this._config.rolling_periods ?? false,
     };
 
     const schema = this._schema(data.compare_button_type === 'text', data.period_buttons.includes('custom'));

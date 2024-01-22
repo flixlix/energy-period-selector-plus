@@ -8,5 +8,6 @@ export interface EnergyPeriodSelectorPlusConfig extends LovelaceCardConfig, Ener
   compare_button_label?: string;
   today_button_type?: string | boolean;
   period_buttons?: string[];
+  rolling_periods?: boolean;
   custom_period_label?: string;
 }
