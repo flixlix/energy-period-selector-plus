@@ -29,6 +29,7 @@
                 "text": "Texto"
             },
             "period_buttons": "Botões de Período",
+            "default_period": "Período padrão",
             "rolling_periods": "Períodos contínuos",
             "today_button_type": "Tipo de Botão Hoje",
             "compare_button_label": "Rótulo do Botão Comparar",

@@ -57,9 +57,15 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
   }
 
   public hassSubscribe(): UnsubscribeFunc[] {
+    this._period = this._config?.default_period || 'day';
+    const startDate = this._beginningOfPeriod(new Date());
+    const endDate = this._endOfPeriod(startDate);
+
     return [
       getEnergyDataCollection(this.hass, {
         key: this.collectionKey,
+        start: startDate,
+        end: endDate,
       }).subscribe(data => this._updateDates(data)),
     ];
   }
