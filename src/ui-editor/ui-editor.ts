@@ -41,6 +41,8 @@ export class EnergyPeriodSelectorEditor extends LitElement implements LovelaceCa
           compare_button_type: optional(string()),
           today_button_type: optional(any()),
           period_buttons: optional(any()),
+          default_period: optional(any()),
+          rolling_periods: optional(any()),
           custom_period_label: optional(string()),
           compare_button_label: optional(string()),
         }),
@@ -67,6 +69,10 @@ export class EnergyPeriodSelectorEditor extends LitElement implements LovelaceCa
             },
             {
               name: 'prev_next_buttons',
+              selector: { boolean: {} },
+            },
+            {
+              name: 'rolling_periods',
               selector: { boolean: {} },
             },
           ],
@@ -106,6 +112,20 @@ export class EnergyPeriodSelectorEditor extends LitElement implements LovelaceCa
                 { value: false, label: '' },
                 { value: 'icon', label: localize('editor.fields.compare_button_options.icon') },
                 { value: 'text', label: localize('editor.fields.compare_button_options.text') },
+              ],
+              mode: 'dropdown',
+            },
+          },
+        },
+        {
+          name: 'default_period',
+          selector: {
+            select: {
+              options: [
+                { value: 'day', label: localize('editor.fields.period_buttons_options.day') },
+                { value: 'week', label: localize('editor.fields.period_buttons_options.week') },
+                { value: 'month', label: localize('editor.fields.period_buttons_options.month') },
+                { value: 'year', label: localize('editor.fields.period_buttons_options.year') },
               ],
               mode: 'dropdown',
             },
@@ -152,6 +172,8 @@ export class EnergyPeriodSelectorEditor extends LitElement implements LovelaceCa
       compare_button_type: this._config.compare_button_type ?? '',
       today_button_type: this._config.today_button_type ?? 'text',
       period_buttons: this._config.period_buttons ?? ['day', 'week', 'month', 'year'],
+      default_period: this._config.default_period ?? 'day',
+      rolling_periods: this._config.rolling_periods ?? false,
     };
 
     const schema = this._schema(data.compare_button_type === 'text', data.period_buttons.includes('custom'));

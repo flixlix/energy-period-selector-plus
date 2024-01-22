@@ -515,7 +515,7 @@ const clearEnergyCollectionPreferences = (hass: HomeAssistant) => {
   });
 };
 
-export const getEnergyDataCollection = (hass: HomeAssistant, options: { prefs?: EnergyPreferences; key?: string } = {}): EnergyCollection => {
+export const getEnergyDataCollection = (hass: HomeAssistant, options: { prefs?: EnergyPreferences; key?: string; start?: Date, end?: Date } = {}): EnergyCollection => {
   let key = '_energy';
   if (options.key) {
     if (!options.key.startsWith('energy_')) {
@@ -576,8 +576,8 @@ export const getEnergyDataCollection = (hass: HomeAssistant, options: { prefs?: 
   collection.prefs = options.prefs;
   const now = new Date();
   // Set start to start of today if we have data for today, otherwise yesterday
-  collection.start = now.getHours() > 0 ? startOfToday() : startOfYesterday();
-  collection.end = now.getHours() > 0 ? endOfToday() : endOfYesterday();
+  collection.start = options.start || (now.getHours() > 0 ? startOfToday() : startOfYesterday());
+  collection.end = options.end || (now.getHours() > 0 ? endOfToday() : endOfYesterday());
 
   const scheduleUpdatePeriod = () => {
     collection._updatePeriodTimeout = window.setTimeout(
