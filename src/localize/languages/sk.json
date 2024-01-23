@@ -1,0 +1,49 @@
+{
+  "common": {
+    "version": "Verzia",
+    "invalid_configuration": "Chybná konfigurácia",
+    "show_warning": "Zobraziť upozornenie",
+    "entity_not_found": "Stav entity nenájdený",
+    "missing_child": "Chýba podriadená entita",
+    "loading": "Načítava..."
+  },
+  "toggleButtons": {
+    "custom": "Vlastné"
+  },
+  "editor": {
+    "yaml_disclaimer": "Pre ostatné možnosti použite režim yaml",
+    "docs": "Dokumentácia",
+    "sections": "Sekcie",
+    "section": "Sekcia",
+    "add_section": "+ Pridať sekciu",
+    "add_entity": "+ Pridať entitu",
+    "entity_editor": "Editor entity",
+    "decimals": "desatinné",
+    "fields": {
+      "card_background": "Pozadie karty",
+      "prev_next_buttons": "Zobraziť predchádzajúce/nasledujúce tlačidlá",
+      "compare_button_type": "Porovnať typ tlačidla",
+      "custom_period_label": "Vlastný štítok obdobia",
+      "compare_button_options": {
+        "icon": "Ikona",
+        "text": "Text"
+      },
+      "period_buttons": "Tlačidlá obdobia",
+      "today_button_type": "Typ tlačidla Dnes",
+      "compare_button_label": "Porovnať štítok tlačidla",
+      "period_buttons_options": {
+        "day": "Deň",
+        "week": "Týždeň",
+        "month": "Mesiac",
+        "year": "Rok",
+        "custom": "Vlastné"
+      }
+    },
+    "entity_types": {
+      "entity": "Entita",
+      "remaining_parent_state": "Zostávajúci rodičovský stav",
+      "remaining_child_state": "Zostávajúci podriadený stav",
+      "passthrough": "Prejsť cez"
+    }
+  }
+}
