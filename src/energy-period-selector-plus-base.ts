@@ -293,7 +293,9 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
         ? endOfDay(customEndDate)
         : this._endDate || endOfToday();
 
-    const energyCollection = getEnergyDataCollection(this.hass);
+    const energyCollection = getEnergyDataCollection(this.hass, {
+      key: this.collectionKey,
+    });
     energyCollection.setPeriod(startDate, endDate);
     energyCollection.refresh();
   }
@@ -319,7 +321,9 @@ export class EnergyPeriodSelectorBase extends SubscribeMixin(LitElement) {
 
   private _toggleCompare() {
     this._compare = !this._compare;
-    const energyCollection = getEnergyDataCollection(this.hass);
+    const energyCollection = getEnergyDataCollection(this.hass, {
+      key: this.collectionKey,
+    });
     energyCollection.setCompare(this._compare);
     energyCollection.refresh();
   }
