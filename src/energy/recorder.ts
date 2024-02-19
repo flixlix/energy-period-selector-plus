@@ -97,7 +97,7 @@ export interface StatisticsUnitConfiguration {
   volume?: 'L' | 'gal' | 'ft³' | 'm³';
 }
 
-const statisticTypes = ['last_reset', 'max', 'mean', 'min', 'state', 'sum'] as const;
+const statisticTypes = ['last_reset', 'max', 'mean', 'min', 'state', 'sum', 'change'] as const;
 export type StatisticsTypes = (typeof statisticTypes)[number][];
 
 export interface StatisticsValidationResults {
