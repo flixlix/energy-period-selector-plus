@@ -378,10 +378,10 @@ const getEnergyData = async (hass: HomeAssistant, prefs: EnergyPreferences, star
   };
 
   const _energyStats: Statistics | Promise<Statistics> = energyStatIds.length
-    ? fetchStatistics(hass!, startMinHour, end, energyStatIds, period, energyUnits, ['sum'])
+    ? fetchStatistics(hass!, startMinHour, end, energyStatIds, period, energyUnits, ['change'])
     : {};
   const _waterStats: Statistics | Promise<Statistics> = waterStatIds.length
-    ? fetchStatistics(hass!, startMinHour, end, waterStatIds, period, waterUnits, ['sum'])
+    ? fetchStatistics(hass!, startMinHour, end, waterStatIds, period, waterUnits, ['change'])
     : {};
 
   let statsCompare;
