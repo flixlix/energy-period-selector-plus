@@ -30,7 +30,7 @@ The original repository provided the solid foundation that made this enhanced ve
 - **Layout Modes** - Choose between `standard` and `compact` layouts
 - **Header Integration** - Optimized `compact` mode perfect for header usage
 - **Enhanced UI Editor** - Added layout mode selection to the configuration interface
-- **Improved Responsiveness** - Better behavior on different screen sizes
+- **Improved Responsiveness** - Better behaviour on different screen sizes
 - **Better Theme Integration** - Proper color theming throughout
 
 ### Code Quality Improvements
@@ -48,24 +48,23 @@ The original repository provided the solid foundation that made this enhanced ve
 - **Theme Integration** - Properly respects Home Assistant's theming system
 - **Responsive Design** - Works great on all screen sizes
 
-## Install
+## Installation
 
-### HACS (recommended)
+### Installing via HACS (recommended)
 
-This card is direclty available in [HACS](https://hacs.xyz/) (Home Assistant Community Store).
-_HACS is a third party community store and is not included in Home Assistant out of the box._
-To install this:
+[![Open your Home Assistant instance and open this repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=talKitron&repository=energy-period-selector-plus&category=dashboard)
 
-- Go to HACS
-- Click on `Frontend`
-- Search for `Energy Period Selector Plus`
-- Install via UI
+or
 
+1. Go to HACS->Integrations
+2. Add this repo(https://github.com/talKitron/energy-period-selector-plus) into your HACS custom repositories
+3. Search for Energy Period Selector Plus Map and Download it
+4. Restart your HomeAssistant
 <details>  <summary>Manual Install</summary>
 
 1. Download and copy `energy-period-selector-plus.js` from the [latest release](https://github.com/talKitron/energy-period-selector-plus/releases/latest) into your `config/www` directory.
 
-2. Add the resource reference as decribed below.
+2. Add the resource reference as described below.
 
 ### Add resource reference
 
@@ -79,14 +78,13 @@ resources:
 
 Else, if you prefer the graphical editor, use the menu to add the resource:
 
-1. Make sure, advanced mode is enabled in your user profile (click on your user name to get there)
+1. Make sure advanced mode is enabled in your user profile (click on your user name to get there)
 2. Navigate to Settings -> Dashboards
 3. Click three dot icon
 4. Select Resources
 5. Hit (+ ADD RESOURCE) icon
 6. Enter URL `/local/energy-period-selector-plus.js` and select type "JavaScript Module".
    (Use `/hacsfiles/energy-period-selector-plus/energy-period-selector-plus.js` and select "JavaScript Module" for HACS install if HACS didn't do it already)
- 
 </details>
    
 ## Using the card
