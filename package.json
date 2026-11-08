@@ -1,7 +1,7 @@
 {
   "name": "energy-period-selector-plus",
   "private": true,
-  "version": "0.3.0-beta.0",
+  "version": "0.3.0-beta.1",
   "type": "module",
   "description": "A configurable energy period selector for Home Assistant energy dashboards",
   "keywords": [

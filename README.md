@@ -14,6 +14,7 @@ around it.
 ## Features
 
 - Day / week / month / year / custom period buttons, in the order you list them
+- Custom ranges are picked in Home Assistant's own calendar, with its presets; with `date_picker`, the date opens it in every period
 - Previous, next and today buttons
 - Compare with the previous period (icon or text button)
 - Optional card background and title
@@ -21,18 +22,19 @@ around it.
 
 ## Configuration
 
-| Name                   | Type                      | Default                    | Description                                                                           |
-| ---------------------- | ------------------------- | -------------------------- | ------------------------------------------------------------------------------------- |
-| `type`                 | string                    | —                          | `custom:energy-period-selector-plus`                                                  |
-| `card_background`      | boolean                   | `false`                    | Show the selector on a card                                                           |
-| `title`                | string                    | —                          | Card title, with `card_background: true`                                              |
-| `prev_next_buttons`    | boolean                   | `true`                     | Show the previous and next buttons                                                    |
-| `today_button_type`    | `text` / `icon` / `false` | `text`                     | Style of the today button, `false` hides it                                           |
-| `compare_button_type`  | `text` / `icon`           | —                          | Show a button that compares with the previous period                                  |
-| `compare_button_label` | string                    | HA's "Compare data"        | Label of the text compare button                                                      |
-| `period_buttons`       | list                      | `[day, week, month, year]` | Period buttons and their order. Add `custom` for a start and end date                 |
-| `custom_period_label`  | string                    | `Custom`                   | Label of the `custom` button                                                          |
-| `collection_key`       | string                    | the dashboard's            | Like in HA's energy cards: drive another energy collection. Must start with `energy_` |
+| Name                   | Type                      | Default                    | Description                                                                                 |
+| ---------------------- | ------------------------- | -------------------------- | ------------------------------------------------------------------------------------------- |
+| `type`                 | string                    | —                          | `custom:energy-period-selector-plus`                                                        |
+| `card_background`      | boolean                   | `false`                    | Show the selector on a card                                                                 |
+| `title`                | string                    | —                          | Card title, with `card_background: true`                                                    |
+| `prev_next_buttons`    | boolean                   | `true`                     | Show the previous and next buttons                                                          |
+| `date_picker`          | boolean                   | `false`                    | Click the date to pick any range in HA's calendar, in every period (always on for `custom`) |
+| `today_button_type`    | `text` / `icon` / `false` | `text`                     | Style of the today button, `false` hides it                                                 |
+| `compare_button_type`  | `text` / `icon`           | —                          | Show a button that compares with the previous period                                        |
+| `compare_button_label` | string                    | HA's "Compare data"        | Label of the text compare button                                                            |
+| `period_buttons`       | list                      | `[day, week, month, year]` | Period buttons and their order. Add `custom` to pick any range in HA's calendar             |
+| `custom_period_label`  | string                    | `Custom`                   | Label of the `custom` button                                                                |
+| `collection_key`       | string                    | the dashboard's            | Like in HA's energy cards: drive another energy collection. Must start with `energy_`       |
 
 ## Examples
 
