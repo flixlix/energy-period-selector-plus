@@ -1,5 +1,10 @@
 # Energy Period Selector Plus
 
+![ko-fi support](https://img.shields.io/badge/support-me-ff5e5b?style=flat-square&logo=ko-fi)
+![GitHub total downloads](https://img.shields.io/github/downloads/flixlix/energy-period-selector-plus/total?style=flat-square)
+
+<img width="516" alt="Energy Period Selector Plus with the month selected, above Energy Flow Card Plus showing that month" src="https://raw.githubusercontent.com/flixlix/flixlix-cards/main/packages/flixlix-cards/energy-period-selector-plus/assets/demo.png">
+
 Picks the period shown by Home Assistant's energy cards (and Energy Flow Card Plus /
 Energy Breakdown Card with `energy_date_selection: true`) on the same dashboard. Like HA's
 [energy date picker](https://www.home-assistant.io/dashboards/energy/#energy-date-picker),
