@@ -1,5 +1,6 @@
 {
-    "name": "Energy Period Selector Plus",
-    "render_readme": true,
-    "filename": "energy-period-selector-plus.js"
+  "name": "Energy Period Selector Plus",
+  "render_readme": true,
+  "homeassistant": "2024.4.0",
+  "filename": "energy-period-selector-plus.js"
 }

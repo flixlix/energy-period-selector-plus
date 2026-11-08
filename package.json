@@ -1,0 +1,28 @@
+{
+  "name": "energy-period-selector-plus",
+  "private": true,
+  "version": "0.3.0-beta.0",
+  "type": "module",
+  "description": "A configurable energy period selector for Home Assistant energy dashboards",
+  "keywords": [
+    "home-assistant",
+    "homeassistant",
+    "hass",
+    "dashboard",
+    "custom-cards",
+    "energy",
+    "period",
+    "date",
+    "selector"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flixlix/flixlix-cards.git"
+  },
+  "author": "flixlix",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flixlix/flixlix-cards/issues"
+  },
+  "homepage": "https://github.com/flixlix/flixlix-cards#readme"
+}
