@@ -1,5 +1,11 @@
 # energy-period-selector-plus
 
+## 0.3.1
+
+### Patch Changes
+
+- **Performance:** The card file is 2 to 5% smaller. Cards are now built with Vite+ instead of Rollup and Babel; they still run on the same browsers, including Chromecast and older tablets. ([#471](https://github.com/flixlix/flixlix-cards/pull/471))
+
 ## 0.3.0
 
 ### Minor Changes
