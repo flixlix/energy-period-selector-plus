@@ -1,5 +1,11 @@
 # energy-period-selector-plus
 
+## 0.3.2
+
+### Patch Changes
+
+- **Fix:** The help button in the card editor opens the card's configuration page on cards.flixlix.com instead of an old GitHub README. ([#488](https://github.com/flixlix/flixlix-cards/pull/488))
+
 ## 0.3.1
 
 ### Patch Changes
