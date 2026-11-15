@@ -1,5 +1,8 @@
 # Energy Period Selector Plus
 
+> [!TIP]
+> **Canonical docs: [cards.flixlix.com/energy-period-selector-plus](https://cards.flixlix.com/energy-period-selector-plus).** This is the custom Home Assistant energy date picker. Installation, options, examples and a [playground](https://cards.flixlix.com/energy-period-selector-plus/playground) are on that page.
+
 ![ko-fi support](https://img.shields.io/badge/support-me-ff5e5b?style=flat-square&logo=ko-fi)
 ![GitHub total downloads](https://img.shields.io/github/downloads/flixlix/energy-period-selector-plus/total?style=flat-square)
 
