@@ -1,5 +1,15 @@
 # energy-period-selector-plus
 
+## 0.4.0-beta.1
+
+### Minor Changes
+
+- **New:** A tidier layout in one row, like Home Flow Card's period picker: the dates, previous and next, and the period in a pill that opens HA's own menu with the periods, today and compare. Nothing wraps on narrow cards anymore. ([#544](https://github.com/flixlix/flixlix-cards/pull/544))
+
+- **New:** Add your own period buttons, like a billing cycle (#390). A `period_buttons` entry can be `{ label, duration, starts }`, e.g. every month from the 8th, a contract year, or the last 30 days without `starts`. The visual editor adds and edits them. ([#544](https://github.com/flixlix/flixlix-cards/pull/544))
+
+- **New:** `period_style: tabs` shows the periods side by side again, with an indicator that slides to the selected one, and today and a compare toggle as buttons next to the dates. The visual editor switches between menu and tabs. ([#546](https://github.com/flixlix/flixlix-cards/pull/546))
+
 ## 0.3.3-beta.0
 
 ### Patch Changes
